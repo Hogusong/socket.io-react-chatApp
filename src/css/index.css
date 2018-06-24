@@ -1,0 +1,49 @@
+* {  margin: 0;  padding: 0; }
+
+body {  background: lemonchiffon;  font-family: sans-serif; }
+
+footer {
+  font: 18px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgb(39, 28, 28);
+  color: white;
+  text-align: center;
+  padding: 16px;
+}
+
+footer span {  font-size: 22px;  font-weight: bold;  color: rgb(255, 102, 0);  }
+
+.App-header {
+  background-color:black;
+  height: 110px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 70px;
+}
+
+.App-title {  font-size: 1.25em;  }
+
+.App-title span {  color: lemonchiffon;  }
+
+.App-header a {  margin: 0 10px;  text-decoration: none;  color: white;  }
+
+.App-header a:hover {  color: rgb(255, 102, 0)  }
+
+.App-header #logger {  display: block;  float: right;  padding: 0 20px;  }
+
+button:hover {  background: black;  color: white  }
+
+button:focus {  outline: none;  }
+
+input:focus {  outline: none;  }
+
+input:hover {  background: lemonchiffon;  }
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
