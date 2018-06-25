@@ -2,9 +2,9 @@ const io = require('./index').io;
 var mongojs = require('mongojs');
 var db = mongojs('chatroom');
 
-const { VERIFY_USER, USER_CONNECTED } = require('./events');
+const { VERIFY_USER, USER_CONNECT, SIGNIN } = require('./events');
 
-let users = {};
+initDB();
 
 module.exports = function(socket) {
   console.log('socket Id:', socket.id)
@@ -16,4 +16,37 @@ module.exports = function(socket) {
       const user = createUser(name);
       callback({ user, inUserIn: false })
   })
+
+  socket.on(SIGNIN, (user, callback) => {
+    db.users.find({ name: user.name }, function(err, docs) {
+      if (docs.length > 0) callback(null) ;
+      else {
+        db.users.find({ email: user.email }, function(err, docs) {
+          if (docs.length > 0) callback(null) ;
+          else {
+            db.users.save({ name: user.name,
+                            email: user.email,
+                            password: user.password
+                          }, function(err, saved) {
+              if (saved) callback(user);
+              else callback(null) ;
+            })            
+          }
+        })
+      }
+    })
+  })
+}
+
+function initDB() {
+  db.chattingRooms.find({}, function(err, docs) {
+    if (docs.length < 1) {
+      db.chattingRooms.save({
+        name: 'Community',
+        users: [],
+        messages: [],
+        typingUsers: []
+      })
+    }
+  })  
 }

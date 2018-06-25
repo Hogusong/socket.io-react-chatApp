@@ -33,8 +33,10 @@ class Header extends Component {
             { logger }
           </div>
         </div>    
-        <SignIn loginUser={this.props.loginUser} />
-        <LogIn  loginUser={this.props.loginUser} />
+        <SignIn loginUser={this.props.loginUser}
+                socket={this.props.socket} />
+        <LogIn  loginUser={this.props.loginUser}
+                socket={this.props.socket} />
       </div>
     )
   }

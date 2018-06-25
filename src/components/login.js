@@ -6,6 +6,23 @@ class LogIn extends Component {
     this.state = {
       username: '', password: ''
     }
+    this.accessLogIn = this.accessLogIn.bind(this);
+  }
+  
+  closeLogIn() {
+    document.getElementById('modal-login').style.display='none';
+  }
+ 
+  accessLogIn() {
+    const username = this.state.username.trim();
+    const password = this.state.password.trim();
+    this.props.loginUser({ username, password });
+  }
+
+  componentDidUpdate() {
+    if(this.props.user) {
+      document.getElementById('modal-login').style.display='none';
+    }
   }
 
   render() {
@@ -20,13 +37,15 @@ class LogIn extends Component {
           <div className="modal-info">
             <label className="modal-label">Username or Email</label>
             <input className="modal-input" type="text" placeholder="Enter name or email" 
-                    value={this.state.username}/>
+                    value={this.state.username}
+                    onChange={(e) => this.setState({ username: e.target.value })} />
 
             <label className="modal-label">Password</label>
             <input className="modal-input" type="password" placeholder="Enter Password"
-                    id="loginpass" value={this.state.password} />
+                    id="loginpass" value={this.state.password}
+                    onChange={(e) => this.setState({ password: e.target.value })} />  
 
-            <button className="modal-btn">Submit</button>
+            <button onClick={() => this.accessLogIn()} className="modal-btn">Submit</button>
           </div>
         </div>    
       </div>
