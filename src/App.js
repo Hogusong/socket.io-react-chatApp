@@ -1,44 +1,43 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-import { USER_CONNECT, LOGOUT} from './server/events'
 
+import { USER_CONNECTED, LOGOUT } from './events'
 import './css/app.css';
 import Header from './components/header';
 import Home from './components/home';
-import Layout from './components/layout';
+import ChatContainer from './chats/chatContainer';
 
 const socketUrl = 'http://192.168.1.187:3231/';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {  user: null, socket: null }
   }
 
-  initSocket = () => {
+  // Connect to and initializes the socket before mounting
+  componentWillMount() {
     const socket = io(socketUrl);
     socket.on('connect', () => {
       this.setState({ socket })
     })
   }
 
-  // setUser = (user) => this.setState({ user });
-
   logoutUser = () => {
-    const socket = this.state.socket;
+    const { socket } = this.state;
     socket.emit(LOGOUT, this.state.user)
     this.setState({  user: null  })
   }
 
   loginUser = (user) => {
-    console.log('In App user:', user)
-    const socket = this.state.socket;
-    // socket.emit(USER_CONNECT, user)
-    this.setState({ user })
+    const { socket } = this.state;
+    socket.emit(USER_CONNECTED, user, this.setUser)
   }
 
-  componentWillMount() {
-    this.initSocket()
+  // Sets the user(_id, name) property in state 
+  setUser = (user) => {
+    if (user) this.setState({ user });
+    else alert('This user is already in.')
   }
 
   render() {
@@ -46,10 +45,13 @@ class App extends Component {
       <div className='App-body'>
         <Header socket={this.state.socket}
                 user={this.state.user}
-                setUser={this.setUser}
                 loginUser={this.loginUser} 
                 logout={this.logoutUser} />
-        { !this.state.user ? <Home /> : <Layout name={this.state.name}/>}
+        { !this.state.user ? 
+            <Home /> : 
+            <ChatContainer user={this.state.user}
+                           socket={this.state.socket}
+                           logout={this.logoutUser} />}
         <footer>
           <span>G</span>od<span>B</span>less<span>U</span> Web Services &copy; 2018
         </footer>
@@ -57,7 +59,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
-
-

@@ -1,0 +1,165 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.side-bar {
+  border-right: 1px black solid;
+  height: 100%;
+  background: ghostwhite;
+}
+
+.bar-header, .search, .current-user {
+  height: 60px;
+  border-bottom: 1px black solid;
+}
+
+.bar-title, .search-icon, .search inputh {
+  float: left;
+}
+
+.bar-menu, .plus {
+  float: right;
+}
+
+.bar-title, .bar-menu, .search-icon, .plus {
+  padding: 15px;
+  font-size: 24px;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr
+}
+
+.search input {
+  padding: 10px;
+  font-size: 20px;
+  margin: 5px 0;
+} 
+
+.bar-title {
+  margin-left: 5vw;
+}
+
+.chats {
+  height: 568px;
+  border-bottom: 1px black solid;  
+}
+
+.user {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding: 15px;
+  font-size: 20px;
+}
+
+#last-message {
+  font-size: 10px;
+}
+
+.user-photo {
+  float: left;
+}
+
+.user-info {
+  float: left;
+  text-align: left;
+}
+
+.current-user {
+  font-size: 24px;
+  height: 31px;
+  padding: 15px;
+}
+
+.current-user span {
+  float: left;
+}
+
+.leave {
+  float: right;
+}
+
+.chat-room {
+  height: 100%;
+  text-align: center;
+  background: lightblue
+}
+
+#choose {
+  margin-top: 33vh;
+  font-size: 36px;
+  color: mediumvioletred
+}
+
+.chat-room-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.chat-header {
+  height: 60px;
+  border-bottom: 1px black solid;  
+}
+
+.chat-name {
+  float: left;
+  font-size: 24px;
+  padding: 15px 0;
+  margin-left: 4vw;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 20px;
+  float: right;
+  margin-top: 20px;
+  width: 100px;
+}
+
+.thread-container {
+  height: 629px;
+  border-bottom: 1px black solid
+}
+
+.message-input input {
+  float: left;
+  font-size: 20px;
+  width: 40vw;
+  padding: 10px;
+  margin: 5px 0 0 20px;
+}
+
+.message-input button {
+  float: left;
+  font-size: 20px;
+  width: 100px;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px 0 0 20px;
+}
+
+@media(max-width: 960px){
+  .container {    grid-template-columns: 2fr 3fr   }
+}
+
+@media(max-width: 780px){
+  .container {    grid-template-columns: 1fr 1fr   }
+}
+
+@media(max-width: 600px){
+  .bar-title, .bar-menu, .search-icon, .plus, .search input, .user, .current-user, .options, .chat-name {
+    font-size: 16px;
+  }
+
+  .chat-name, .bar-title {
+    padding: 20px 0;
+  }
+}
+
+@media(max-width: 480px) {
+  .container {   grid-template-columns: 1fr   }
+  .side-bar {    display: none;    }
+}

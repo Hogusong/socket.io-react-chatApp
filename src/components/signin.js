@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SIGNIN } from '../server/events';
+import { SIGNIN } from '../events';
 
 class SignIn extends Component {
   constructor(props) {
@@ -31,8 +31,13 @@ class SignIn extends Component {
     socket.emit(SIGNIN, user, this.login)
   }
 
+  pressEnter = (e) => {
+    if(e.keyCode === 13 || e.key === 'Enter') {
+      this.accessSignIn()
+    }
+  }
+
   login = (user) => {
-    console.log('user in sign in:', user)
     if (user) {
       document.getElementById('modal-signin').style.display='none';    
       this.props.loginUser(user);
@@ -69,8 +74,10 @@ class SignIn extends Component {
             <label className="modal-label">Confirm password</label>
             <input className="modal-input" type="password" placeholder="Enter Password again( 6 and more )"
                     id="confirm" value={this.state.confirm}
+                    onKeyPress={this.pressEnter}
                     onChange={(e) => this.setState({ confirm: e.target.value })} />  
-            <button onClick={() => this.accessSignIn()} className="modal-btn">Submit</button>
+            <button onClick={() => this.accessSignIn()} 
+                    className="modal-btn">Submit</button>
           </div>
         </div>    
       </div>

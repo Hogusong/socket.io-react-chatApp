@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
+import '../css/home.css'
 
-class Home extends Component {
+export default class Home extends Component {
   render() {
     return (
-      <div className='home-body'>
-        <h1 id='home-msg'>'<span>Log in</span>' or '<span>Sign in</span>' to start!</h1>
+      <div className='home-container'>
+        <h1>'<span>Log in</span>' or '<span>Sign in</span>' to start!</h1>
       </div>
     );
   }
 }
-
-export default Home;
-
-

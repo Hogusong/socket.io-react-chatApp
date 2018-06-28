@@ -23,7 +23,7 @@ class Header extends Component {
        </div> 
       
     return (
-      <div>
+      <div className='header'>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <div>

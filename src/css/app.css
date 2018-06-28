@@ -1,22 +1,3 @@
-.home-body {
-  overflow: hidden;
-  height: 80vh;
-  text-align: center
-}
-
-#home-msg {
-  margin-top: 32vh;
-}
-
-#home-msg span {  color: orangered  } 
-
-.home-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
 .modal {
   z-index: 3;
   display: none;
